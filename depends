@@ -1,0 +1,45 @@
+# Window Manager
+
+gnome-screenshot
+lubuntu-desktop
+i3
+xscreensaver
+xscreensaver-data
+
+# Dev Tools
+
+automake
+build-essential
+clang
+clang-format
+cmake
+gcc-multilib
+git
+make
+nasm
+python-pip
+python3-pip
+vim
+
+# Packaging Tools
+
+debhelper
+debmake
+devscripts
+dh-make
+germinate
+git-buildpackage
+
+# Misc Tools
+
+apache2
+cifs-utils
+gnupg2
+htop
+iotop
+p7zip-full
+pwgen
+tree
+wireshark
+
+#keystone

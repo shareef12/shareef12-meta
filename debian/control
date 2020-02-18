@@ -1,0 +1,14 @@
+Source: shareef12-meta
+Section: metapackages
+Priority: optional
+Maintainer: Christian Sharpsten <shareef12@twelvetacos.com>
+Standards-Version: 4.1.3
+Build-Depends: debhelper (>= 11)
+
+Package: shareef12-desktop
+Architecture: any
+Depends: ${package:Depends}, ${misc:Depends}
+Recommends: ${package:Recommends}
+Description: shareef12's Desktop Environment
+ This package depends on all of the packages that create shareef12's desktop
+ environment.
