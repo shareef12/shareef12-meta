@@ -6,7 +6,7 @@ Standards-Version: 4.1.3
 Build-Depends: debhelper (>= 11)
 
 Package: shareef12-desktop
-Architecture: any
+Architecture: all
 Depends: ${package:Depends}, ${misc:Depends}
 Recommends: ${package:Recommends}
 Description: shareef12's Desktop Environment
