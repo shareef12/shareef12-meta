@@ -1,0 +1,7 @@
+/debian/.debhelper/
+/debian/shareef12-desktop/
+
+/debian/debhelper-build-stamp
+/debian/files
+/debian/*.debhelper.log
+/debian/*.substvars
