@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 #
-# setup-user.sh
+# setup-shareef12-desktop-user
 #
 # This script will configure i3 and user-specific settings.
 #
@@ -34,7 +34,7 @@ git config --global user.email shareef12@twelvetacos.com
 
 echo "Configuring SSH..."
 if [ ! -f ~/.ssh/id_rsa ] && [ ! -f ~/.ssh/id_ecdsa ]; then
-    ssh-keygen -t ecdsa -C "user@$(hostname)" -N '' -f ~/.ssh/id_ecdsa
+    ssh-keygen -t ecdsa -C "${USER}@$(hostname)" -N '' -f ~/.ssh/id_ecdsa
     cp ~/.ssh/id_ecdsa ~/.ssh/authorized_keys
     chmod 700 ~/.ssh
 fi
