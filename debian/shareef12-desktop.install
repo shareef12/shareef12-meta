@@ -1,0 +1,3 @@
+files/setup-user.sh /usr/bin/
+files/vimrc /etc/shareef12-desktop/
+files/bashrc /etc/shareef12-desktop/

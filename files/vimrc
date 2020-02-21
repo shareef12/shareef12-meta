@@ -1,0 +1,24 @@
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+
+set number
+set background=dark
+set tw=99
+set cc=100
+
+autocmd FileType gitcommit setlocal tw=72
+
+autocmd BufNewFile,BufRead *.md,*.txt,*.tex,*.dtx,*.cls set tw=80
+autocmd BufNewFile,BufRead *.md,*.txt,*.tex,*.dtx,*.cls set cc=81
+
+autocmd BufNewFile,BufRead *.html,*.css,*.yml,*.yaml set tabstop=2
+autocmd BufNewFile,BufRead *.html,*.css,*.yml,*.yaml set shiftwidth=2
+
+autocmd BufNewFile,BufRead *.njk,*.j2 set syntax=jinja
+autocmd BufNewFile,BufRead *.s,*asm set filetype=nasm
+autocmd BufNewFile,BufRead *.ins set filetype=tex
+
+highlight ColorColumn ctermbg=7
+autocmd BufWritePre * %s/\s\+$//e

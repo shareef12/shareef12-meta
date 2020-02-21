@@ -1,0 +1,18 @@
+
+# Configured by shareef12-desktop
+
+parse_git_branch() {
+	git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+glog() {
+	git log --graph --pretty=format:'%h %ar %an: %s' $@
+}
+
+export EDITOR='vim'
+alias gdb='gdb -q'
+
+source /usr/share/bash-completion/completions/git
+__git_complete glog _git_log
+
+PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;31m\]\$(parse_git_branch)\[\033[00m\]\$ "

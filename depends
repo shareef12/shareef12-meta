@@ -17,8 +17,6 @@ gcc-multilib
 git
 make
 nasm
-python-pip
-python3-pip
 vim
 
 # Packaging Tools
@@ -43,3 +41,10 @@ tree
 wireshark
 
 #keystone
+
+# Kernel tools (and Virtualbox guest additions dependencies)
+# This will upgrade to the latest HWE kernel
+# linux-generic-hwe-xx.xx depends will pull in the linux-headers-* package as well
+
+dkms
+linux-generic-hwe-18.04
