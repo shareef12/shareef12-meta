@@ -22,6 +22,10 @@ else
 
     # Update the lxterminal background color
     sed -i -e 's/bgcolor=.*/bgcolor=rgb(34,34,34)/' ~/.config/lxterminal/lxterminal.conf
+
+    # Add a devscripts config file for lintian
+    echo '#DEBUILD_LINTIAN_OPTS="-EviIL +pedantic --color always"' > ~/.devscripts
+    echo 'DEBUILD_LINTIAN_OPTS="-EvIL +pedantic --color always"' > ~/.devscripts
 fi
 
 echo "Configuring git..."

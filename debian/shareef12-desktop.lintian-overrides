@@ -1,0 +1,5 @@
+# The debian packaging tools are intentionally included
+shareef12-desktop binary: binary-package-depends-on-toolchain-package depends: debhelper
+
+# This is a simple utility script for only shareef12 - a man page is not necessary
+shareef12-desktop binary: binary-without-manpage usr/bin/setup-shareef12-desktop-user
