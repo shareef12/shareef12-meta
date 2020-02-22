@@ -17,26 +17,27 @@ set -e
 # for details, see https://www.debian.org/doc/debian-policy/ or
 # the debian-policy package
 
-configure_sharef12_desktop()
-{
-    # Update all packages
-    apt-get update && apt-get dist-upgrade
-    apt-get autoremove --purge
-
+configure_shareef12_desktop () {
     # Upgrade pip
-    python -m pip install -U pip setuptools wheel
-    python3 -m pip install -U pip setuptools wheel
+    HOME=/root python -m pip install -U pip setuptools wheel
+    HOME=/root python3 -m pip install -U pip setuptools wheel
 
     # Install python packages
-    python -m pip install -U pwntools requests virtualenv
-    python3 -m pip install -U requests virtualenv
+    HOME=/root python -m pip install -U pwntools requests virtualenv
+    HOME=/root python3 -m pip install -U requests virtualenv
 
     # Install linting/testing packages
-    python -m pip install -U doc8 flake8 mypy pylint pytest tox
-    python3 -m pip install -U doc8 flake8 mypy pylint pytest tox
+    HOME=/root python -m pip install -U doc8 flake8 pylint pytest six tox
+    HOME=/root python3 -m pip install -U doc8 flake8 mypy pylint pytest six tox
 
     # Create home directories for new users with 0755 permissions
     sed -i -e 's/DIR_MODE=0755/DIR_MODE=0750/' /etc/adduser.conf
+
+    # Enable source repos
+    sed -i \
+        -e 's/# deb-src/deb-src/'               \
+        -e 's/\(deb-src .* partner\)$/# \1/'    \
+        /etc/apt/sources.list
 }
 
 case "$1" in
