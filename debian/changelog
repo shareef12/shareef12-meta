@@ -1,5 +1,5 @@
-shareef12-meta (0.1.0~ubuntu18.04) UNRELEASED; urgency=low
+shareef12-meta (0.1.0~ubuntu18.04) bionic; urgency=low
 
   * Initial release.
 
- -- Christian Sharpsten <shareef12@twelvetacos.com>  Sun, 16 Feb 2020 22:24:31 +0000
+ -- Christian Sharpsten <shareef12@twelvetacos.com>  Sat, 22 Feb 2020 03:15:12 +0000
