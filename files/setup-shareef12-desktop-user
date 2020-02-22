@@ -6,17 +6,14 @@
 # This script will configure i3 and user-specific settings.
 #
 
-echo "Installing vimrc..."
-if [[ -f ~/.vimrc ]]; then
-    echo >&2 "~/.vimrc already exists! Skipping vimrc installation."
-else
+if [[ ! -f ~/.vimrc ]]; then
+    echo "Installing vimrc..."
     cp /etc/shareef12-desktop/vimrc ~/.vimrc
 fi
 
-echo "Configuring bashrc..."
-if cat ~/.bashrc | grep 'Configured by shareef12-desktop' > /dev/null; then
-    echo >&2 "~/.bashrc already configured! Skipping bashrc configuration."
-else
+grep -q 'Configured by shareef12-desktop' ~/.bashrc
+if [[ $? != 0 ]]; then
+    echo "Configuring bashrc..."
     cat /etc/shareef12-desktop/bashrc >> ~/.bashrc
     source ~/.bashrc
 
@@ -28,24 +25,27 @@ else
     echo 'DEBUILD_LINTIAN_OPTS="-EvIL +pedantic --color always"' > ~/.devscripts
 fi
 
+if [[ ! -f ~/.gdbinit ]]; then
+    echo "Configuring gdbinit..."
+    cp /etc/shareef12-desktop/gdbinit ~/.gdbinit
+fi
+
 echo "Configuring git..."
 git config --global user.name shareef12
 git config --global user.email shareef12@twelvetacos.com
 
-echo "Configuring SSH..."
 if [ ! -f ~/.ssh/id_rsa ] && [ ! -f ~/.ssh/id_ecdsa ]; then
+    echo "Configuring SSH..."
     ssh-keygen -t ecdsa -C "${USER}@$(hostname)" -N '' -f ~/.ssh/id_ecdsa
-    cp ~/.ssh/id_ecdsa ~/.ssh/authorized_keys
-    chmod 700 ~/.ssh
+    cp ~/.ssh/id_ecdsa.pub ~/.ssh/authorized_keys
 fi
 
 echo "Updating filesystem permissions..."
 chmod 750 ~/
+chmod 700 ~/.ssh
 
-echo "Configuring i3..."
-if [[ -f ~/.config/i3/config ]]; then
-    echo >&2 "~/.config/i3/config already exists! Skipping i3 configuration."
-else
+if [[ ! -f ~/.config/i3/config ]]; then
+    echo "Configuring i3..."
     i3-config-wizard
 
     # Rebind window keys to match vim keybindings
@@ -91,10 +91,8 @@ else
     i3-msg reload
 fi
 
-echo "Configuring i3status..."
-if [[ -f ~/.config/i3status/config ]]; then
-    echo >&2 "~/.config/i3status/config already exists! Skipping i3status configuration."
-else
+if [[ ! -f ~/.config/i3status/config ]]; then
+    echo "Configuring i3status..."
     mkdir -p ~/.config/i3status
     cp /etc/i3status.conf ~/.config/i3status/config
 
