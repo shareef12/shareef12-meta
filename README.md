@@ -33,6 +33,6 @@ Install the package with dpkg and use the installed shell script to configure
 user-specific settings.
 
 ```
-sudo dpkg -i ../shareef12-desktop_0.1.0~ubuntu18.04_all.deb
+sudo apt-get install -f ../shareef12-desktop_0.1.0~ubuntu18.04_all.deb
 setup-shareef12-desktop-user
 ```
