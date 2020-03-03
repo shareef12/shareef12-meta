@@ -18,16 +18,9 @@ set -e
 # the debian-policy package
 
 configure_shareef12_desktop () {
-    # Upgrade pip
-    HOME=/root python -m pip install -U pip setuptools wheel
+    # Upgrade pip and install common python packages
     HOME=/root python3 -m pip install -U pip setuptools wheel
-
-    # Install python packages
-    HOME=/root python -m pip install -U pwntools requests virtualenv
     HOME=/root python3 -m pip install -U requests virtualenv
-
-    # Install linting/testing packages
-    HOME=/root python -m pip install -U doc8 flake8 pylint pytest six tox
     HOME=/root python3 -m pip install -U doc8 flake8 mypy pylint pytest six tox
 
     # Create home directories for new users with 0755 permissions
