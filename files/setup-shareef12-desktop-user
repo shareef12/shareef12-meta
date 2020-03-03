@@ -11,8 +11,7 @@ if [[ ! -f ~/.vimrc ]]; then
     cp /etc/shareef12-desktop/vimrc ~/.vimrc
 fi
 
-grep -q 'Configured by shareef12-desktop' ~/.bashrc
-if [[ $? != 0 ]]; then
+if ! grep -q 'Configured by shareef12-desktop' ~/.bashrc; then
     echo "Configuring bashrc..."
     cat /etc/shareef12-desktop/bashrc >> ~/.bashrc
     source ~/.bashrc
