@@ -32,6 +32,7 @@ git-buildpackage
 # Misc Tools
 
 apache2
+chromium-browser
 cifs-utils
 gnupg2
 htop
