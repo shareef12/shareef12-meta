@@ -1,3 +1,12 @@
+shareef12-meta (0.1.1~ubuntu18.04) bionic; urgency=low
+
+  * setup-shareef12-desktop-user: fix bashrc configuration detection
+  * postinst: remove python2 packages
+  * depends: add chromium-driver
+  * gdbinit: set auto-load safe-path
+
+ -- Christian Sharpsten <shareef12@twelvetacos.com>  Tue, 03 Mar 2020 03:58:18 +0000
+
 shareef12-meta (0.1.0~ubuntu18.04) bionic; urgency=low
 
   * Initial release.
