@@ -1,7 +1,6 @@
 # Window Manager
 
 gnome-screenshot
-lubuntu-desktop
 i3
 unattended-upgrades
 xscreensaver
@@ -26,13 +25,12 @@ debhelper
 debmake
 devscripts
 dh-make
-germinate
 git-buildpackage
 
 # Misc Tools
 
 apache2
-chromium-browser
+chromium
 cifs-utils
 gnupg2
 htop
@@ -45,8 +43,5 @@ wireshark
 #keystone
 
 # Kernel tools (and Virtualbox guest additions dependencies)
-# This will upgrade to the latest HWE kernel
-# linux-generic-hwe-xx.xx depends will pull in the linux-headers-* package as well
 
 dkms
-linux-generic-hwe-18.04
