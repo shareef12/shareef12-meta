@@ -1,3 +1,5 @@
+syntax on
+
 set tabstop=4
 set shiftwidth=4
 set expandtab
@@ -21,4 +23,4 @@ autocmd BufNewFile,BufRead *.s,*asm set filetype=nasm
 autocmd BufNewFile,BufRead *.ins set filetype=tex
 
 highlight ColorColumn ctermbg=7
-autocmd BufWritePre * %s/\s\+$//e
+"autocmd BufWritePre * %s/\s\+$//e

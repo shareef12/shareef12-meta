@@ -6,33 +6,36 @@
 # This script will configure i3 and user-specific settings.
 #
 
-if [[ ! -f ~/.vimrc ]]; then
-    echo "Installing vimrc..."
-    cp /etc/shareef12-desktop/vimrc ~/.vimrc
-fi
+function install_conffile {
+    install --verbose --backup -D -m 0644 "$1" "$2"
+}
 
+# Install configuration files
+install_conffile /etc/shareef12-desktop/devscripts ~/.devscripts
+install_conffile /etc/shareef12-desktop/dircolors ~/.dircolors
+install_conffile /etc/shareef12-desktop/gdbinit ~/.gdbinit
+install_conffile /etc/shareef12-desktop/i3config ~/.config/i3/config
+install_conffile /etc/shareef12-desktop/i3status.conf ~/.config/i3status/config
+install_conffile /etc/shareef12-desktop/vimrc ~/.vimrc
+
+# Update the lxterminal background color
+sed -i -e 's/bgcolor=.*/bgcolor=rgb(34,34,34)/' ~/.config/lxterminal/lxterminal.conf
+
+# Update bashrc configuration
 if ! grep -q 'Configured by shareef12-desktop' ~/.bashrc; then
     echo "Configuring bashrc..."
     cat /etc/shareef12-desktop/bashrc >> ~/.bashrc
     source ~/.bashrc
-
-    # Update the lxterminal background color
-    sed -i -e 's/bgcolor=.*/bgcolor=rgb(34,34,34)/' ~/.config/lxterminal/lxterminal.conf
-
-    # Add a devscripts config file for lintian
-    echo '#DEBUILD_LINTIAN_OPTS="-EviIL +pedantic --color always"' > ~/.devscripts
-    echo 'DEBUILD_LINTIAN_OPTS="-EvIL +pedantic --color always"' > ~/.devscripts
 fi
 
-if [[ ! -f ~/.gdbinit ]]; then
-    echo "Configuring gdbinit..."
-    cp /etc/shareef12-desktop/gdbinit ~/.gdbinit
+# Configure a default git user
+if ! git config --get user.name > /dev/null; then
+    echo "Configuring git..."
+    git config --global user.name shareef12
+    git config --global user.email shareef12@twelvetacos.com
 fi
 
-echo "Configuring git..."
-git config --global user.name shareef12
-git config --global user.email shareef12@twelvetacos.com
-
+# Generate an SSH key
 if [ ! -f ~/.ssh/id_rsa ] && [ ! -f ~/.ssh/id_ecdsa ]; then
     echo "Configuring SSH..."
     ssh-keygen -t ecdsa -C "${USER}@$(hostname)" -N '' -f ~/.ssh/id_ecdsa
@@ -43,69 +46,6 @@ echo "Updating filesystem permissions..."
 chmod 750 ~/
 chmod 700 ~/.ssh
 
-if [[ ! -f ~/.config/i3/config ]]; then
-    echo "Configuring i3..."
-    i3-config-wizard
-
-    # Rebind window keys to match vim keybindings
-    sed -i \
-        -e 's/\$mod+j /$mod+h /gI'                      \
-        -e 's/\$mod+k /$mod+j /gI'                      \
-        -e 's/\$mod+l /$mod+k /gI'                      \
-        -e 's/\$mod+semicolon /$mod+l /gI'              \
-        -e 's/\$mod+Shift+j /$mod+Shift+h /gI'          \
-        -e 's/\$mod+Shift+k /$mod+Shift+j /gI'          \
-        -e 's/\$mod+Shift+l /$mod+Shift+k /gI'          \
-        -e 's/\$mod+Shift+semicolon /$mod+Shift+l /gI'  \
-        ~/.config/i3/config
-
-    # Since we hijacked the $mod+h key-combo, rebind the actions that used it previously
-    sed -i \
-        -e 's/\$mod+h split h/$mod+semicolon split h/gI' \
-        ~/.config/i3/config
-
-    # Rebind the resizing keys
-    sed -i \
-        -e 's/j resize/h resize/gI'         \
-        -e 's/k resize/j resize/gI'         \
-        -e 's/l resize/k resize/gI'         \
-        -e 's/semicolon resize/l resize/gI' \
-        ~/.config/i3/config
-
-    # Update the status bar
-    sed -i \
-        -e '/status_command i3status/a \        tray_output primary\n        position top\n        font pango:DejaVu Sans Mono 16' \
-        ~/.config/i3/config
-
-    # Add a vmware-tools startup command
-    sed -i '/set \$mod/i #exec \/usr\/bin\/vmware-user-suid-wrapper' ~/.config/i3/config
-
-    # Add autotstartup commands
-    echo "" >> ~/.config/i3/config
-    echo '#exec --no-startup-id xscreensaver -no-splash &' >> ~/.config/i3/config
-    echo 'bindsym Control+Mod1+l exec xscreensaver-command -lock' >> ~/.config/i3/config
-    echo 'bindsym $mod+Shift+m move workspace to output right' >> ~/.config/i3/config
-    echo 'bindsym Control+Print exec gnome-screenshot -i' >> ~/.config/i3/config
-
-    i3-msg reload
-fi
-
-if [[ ! -f ~/.config/i3status/config ]]; then
-    echo "Configuring i3status..."
-    mkdir -p ~/.config/i3status
-    cp /etc/i3status.conf ~/.config/i3status/config
-
-    # Remove unused options
-    sed -i \
-        -e 's/\(order += "ipv6"\)/#\1/gI'             \
-        -e 's/\(order += "wireless _first_"\)/#\1/gI' \
-        -e 's/\(order += "battery .*\)"/#\1/gI'       \
-        ~/.config/i3status/config
-
-    # Update the disk format
-    sed -i \
-        -e 's/format = "%avail"/format = "\/ %avail"/gI' \
-        ~/.config/i3status/config
-
-    i3-msg restart
-fi
+echo "Restarting i3..."
+i3-msg reload
+i3-msg restart

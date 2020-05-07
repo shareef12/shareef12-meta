@@ -1,0 +1,2 @@
+#DEBUILD_LINTIAN_OPTS="-EviIL +pedantic --color always"
+DEBUILD_LINTIAN_OPTS="-EvIL +pedantic --color always"

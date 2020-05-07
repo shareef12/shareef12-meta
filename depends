@@ -32,11 +32,13 @@ git-buildpackage
 apache2
 chromium
 cifs-utils
+curl
 gnupg2
 htop
 iotop
 p7zip-full
 pwgen
+python3-pip
 tree
 wireshark
 

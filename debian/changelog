@@ -1,3 +1,9 @@
+shareef12-meta (0.2.0) unstable; urgency=medium
+
+  * port to debian
+
+ -- Christian Sharpsten <christian.sharpsten@gmail.com>  Wed, 06 May 2020 21:14:02 -0400
+
 shareef12-meta (0.1.1~ubuntu18.04) bionic; urgency=low
 
   * setup-shareef12-desktop-user: fix bashrc configuration detection
@@ -5,10 +11,10 @@ shareef12-meta (0.1.1~ubuntu18.04) bionic; urgency=low
   * depends: add chromium-driver
   * gdbinit: set auto-load safe-path
 
- -- Christian Sharpsten <shareef12@twelvetacos.com>  Tue, 03 Mar 2020 03:58:18 +0000
+ -- Christian Sharpsten <christian.sharpsten@gmail.com>  Tue, 03 Mar 2020 03:58:18 +0000
 
 shareef12-meta (0.1.0~ubuntu18.04) bionic; urgency=low
 
   * Initial release.
 
- -- Christian Sharpsten <shareef12@twelvetacos.com>  Sat, 22 Feb 2020 03:15:12 +0000
+ -- Christian Sharpsten <christian.sharpsten@gmail.com>  Sat, 22 Feb 2020 03:15:12 +0000

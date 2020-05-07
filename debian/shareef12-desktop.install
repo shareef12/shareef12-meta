@@ -1,5 +1,9 @@
 files/setup-shareef12-desktop-user /usr/bin/
 
 files/bashrc /etc/shareef12-desktop/
+files/devscripts /etc/shareef12-desktop/
+files/dircolors /etc/shareef12-desktop/
 files/gdbinit /etc/shareef12-desktop/
+files/i3config /etc/shareef12-desktop/
+files/i3status.conf /etc/shareef12-desktop/
 files/vimrc /etc/shareef12-desktop/
