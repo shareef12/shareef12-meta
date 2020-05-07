@@ -1,9 +1,10 @@
 Source: shareef12-meta
 Section: metapackages
 Priority: optional
-Maintainer: Christian Sharpsten <shareef12@twelvetacos.com>
-Standards-Version: 4.1.4
-Build-Depends: debhelper (>= 11)
+Maintainer: Christian Sharpsten <christian.sharpsten@gmail.com>
+Standards-Version: 4.5.0
+Build-Depends: debhelper-compat (= 13)
+Rules-Requires-Root: no
 
 Package: shareef12-desktop
 Architecture: all
