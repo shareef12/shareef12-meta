@@ -12,14 +12,18 @@ function install_conffile {
 
 # Install configuration files
 install_conffile /etc/shareef12-desktop/devscripts ~/.devscripts
-install_conffile /etc/shareef12-desktop/dircolors ~/.dircolors
 install_conffile /etc/shareef12-desktop/gdbinit ~/.gdbinit
 install_conffile /etc/shareef12-desktop/i3config ~/.config/i3/config
 install_conffile /etc/shareef12-desktop/i3status.conf ~/.config/i3status/config
+install_conffile /etc/shareef12-desktop/shareef12-desktop.colorscheme ~/.config/qterminal.org/color-schemes/shareef12-desktop.colorscheme
 install_conffile /etc/shareef12-desktop/vimrc ~/.vimrc
 
-# Update the lxterminal background color
-sed -i -e 's/bgcolor=.*/bgcolor=rgb(34,34,34)/' ~/.config/lxterminal/lxterminal.conf
+# Update the qterminal color scheme and settings
+sed -i \
+    -e 's/^AskOnExit=.*$/AskOnExit=false/'                 \
+    -e 's/^colorScheme=.*$/colorScheme=shareef12-desktop/' \
+    -e 's/^fontSize=.*$/fontSize=10/'                      \
+    ~/.config/qterminal.org/qterminal.ini
 
 # Update bashrc configuration
 if ! grep -q 'Configured by shareef12-desktop' ~/.bashrc; then

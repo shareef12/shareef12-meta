@@ -3,7 +3,7 @@ Section: metapackages
 Priority: optional
 Maintainer: Christian Sharpsten <christian.sharpsten@gmail.com>
 Standards-Version: 4.5.0
-Build-Depends: debhelper-compat (= 13)
+Build-Depends: debhelper-compat (= 12)
 Rules-Requires-Root: no
 
 Package: shareef12-desktop

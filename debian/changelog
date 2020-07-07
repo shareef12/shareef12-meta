@@ -1,3 +1,9 @@
+shareef12-meta (0.2.1~ubuntu20.04) focal; urgency=medium
+
+  * port to Ubuntu 20.04
+
+ -- Christian Sharpsten <christian.sharpsten@gmail.com>  Mon, 06 Jul 2020 20:44:46 -0400
+
 shareef12-meta (0.2.0) unstable; urgency=medium
 
   * port to debian

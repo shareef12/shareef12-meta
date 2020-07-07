@@ -1,6 +1,7 @@
 # Window Manager
 
 gnome-screenshot
+lubuntu-desktop
 i3
 unattended-upgrades
 xscreensaver
@@ -30,7 +31,7 @@ git-buildpackage
 # Misc Tools
 
 apache2
-chromium
+chromium-browser
 cifs-utils
 curl
 gnupg2
@@ -47,3 +48,4 @@ wireshark
 # Kernel tools (and Virtualbox guest additions dependencies)
 
 dkms
+linux-generic-hwe-20.04
